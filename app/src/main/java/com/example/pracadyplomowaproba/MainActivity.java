@@ -16,7 +16,7 @@ import java.util.Properties;
 
 @SuppressWarnings("ALL")
 public class MainActivity extends AppCompatActivity {
-//proba githuba
+
     public void ConnectedSSH (String username, String password, String hostname, int port) throws Exception {
         JSch jsch = new JSch();
         Session session = jsch.getSession(username, hostname, port);
