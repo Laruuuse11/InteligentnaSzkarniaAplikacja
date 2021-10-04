@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".WilgotnoscGlebyActivity">
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/gradient_drawable"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0">
+
+
+        <TextView
+            android:id="@+id/CzerwonyCzujnikData"
+            android:layout_width="161dp"
+            android:layout_height="47dp"
+            android:layout_marginStart="200dp"
+            android:layout_marginTop="100dp"
+            android:layout_marginEnd="150dp"
+            android:gravity="center"
+            android:minHeight="48dip"
+            android:textColor="#3E3939"
+            android:textSize="20sp" />
+
+        <TextView
+            android:id="@+id/CzujnikiWilgotnosciText"
+            android:layout_width="310dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="50dp"
+            android:layout_marginLeft="50dp"
+            android:layout_marginTop="25dp"
+            android:layout_marginRight="50dp"
+            android:gravity="center"
+            android:minHeight="48dip"
+            android:text="@string/czujnikiWilgotnosci"
+            android:textColor="#3E3939"
+            android:textSize="20sp" />
+
+        <TextView
+            android:id="@+id/CzerwonyText"
+            android:layout_width="122dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="50dp"
+            android:layout_marginTop="100dp"
+            android:gravity="center"
+            android:minHeight="48dip"
+            android:text="@string/czujnikCzerwony"
+            android:textColor="#3E3939"
+            android:textSize="20sp" />
+
+
+        <TextClock
+            android:id="@+id/TimeTextView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="50dp"
+            android:layout_marginTop="550dp"
+            android:layout_marginRight="50dp"
+            android:ems="10"
+            android:gravity="center"
+            android:inputType="time"
+            android:minHeight="48dip"
+            android:textColor="#3E3939"
+            android:textSize="20sp"
+            tools:ignore="SpeakableTextPresentCheck" />
+
+        <TextView
+            android:id="@+id/DateTextView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="50dp"
+            android:layout_marginTop="475dp"
+            android:layout_marginRight="50dp"
+            android:ems="10"
+            android:gravity="center"
+            android:minHeight="48dip"
+            android:textColor="#3E3939"
+            android:textSize="20sp" />
+
+        <Button
+            android:id="@+id/Cofnij"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="50dp"
+            android:layout_marginTop="625dp"
+            android:layout_marginRight="50dp"
+            android:layout_marginBottom="50dp"
+            android:text="@string/cofnij"
+            android:textColor="#FFEB3B"
+            app:backgroundTint="#3E3939" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="50dp"
+            android:layout_marginTop="175dp"
+            android:layout_marginRight="50dp"
+            android:layout_marginBottom="290dp"
+            android:clickable="true"
+            android:focusable="true" />
+
+
+    </FrameLayout>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

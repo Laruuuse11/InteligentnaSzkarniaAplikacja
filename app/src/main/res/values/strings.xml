@@ -1,0 +1,52 @@
+<resources>
+    <string name="app_name">SZKLARNIA IoT</string>
+    <string name="haslo">Hasło:</string>
+    <string name="adres_ip">Adres IP:</string>
+    <string name="login">Login:</string>
+    <string name="polacz">Połącz</string>
+    <string name="naglowek">Witaj w inteligentnym systemie zarządzania szklarnią!</string>
+    <string name="off">OFF</string>
+    <string name="on">On</string>
+    <string name="wyjscie">Wyjście</string>
+    <string name="swiatlo">Światło:</string>
+    <string name="gniazda">Gniazda:</string>
+    <string name="wentylatory">Wentylatory:</string>
+    <string name="temperatura">Temperatura:</string>
+    <string name="wilgotnosc">Wilgotność:</string>
+    <string name="wilgotnosc_gleby_roslin">Wilgotność gleby roślin</string>
+    <string name="cofnij">Cofnij</string>
+    <string name="czujnikCzerwony">Wilgotność:</string>
+    <string name="czujnikZielony">Zielony</string>
+    <string name="czujnikCzarny">Czarny</string>
+    <string name="czujnikiWilgotnosci">CZUJNIKI WILGOTNOŚCI GLEBY:</string>
+    <string name="textview">TextView</string>
+    <string name="textview1">TextView</string>
+    <string name="todo">TODO</string>
+
+
+    <string-array name="plants">
+        <item>Syngonium Neon Robusta</item>
+        <item>Ctenanthe Setosa</item>
+        <item>Maranta Tricolor</item>
+        <item>Syngonium Berry Allusion</item>
+        <item>Syngonium Emerald Gem</item>
+        <item>Philodendron White Princess</item>
+        <item>Philodendron Golden Princess</item>
+        <item>Philodendron Squamiferum</item>
+        <item>Philodendron Verrucosum</item>
+        <item>Monstera Monkey Mask</item>
+    </string-array>
+    <string-array name="opisPodlewania">
+        <item>WYMAGANIA ROŚLINKI: \n •\n • \n • \n • \n • \n • \n • \n •</item>
+        <item>WYMAGANIA ROŚLINKI: \n •\n • \n • \n • \n • \n • \n • \n •</item>
+        <item>WYMAGANIA ROŚLINKI: \n •\n • \n • \n • \n • \n • \n • \n •</item>
+        <item>WYMAGANIA ROŚLINKI: \n •\n • \n • \n • \n • \n • \n • \n •</item>
+        <item>WYMAGANIA ROŚLINKI: \n •\n • \n • \n • \n • \n • \n • \n •</item>
+        <item>WYMAGANIA ROŚLINKI: \n •\n • \n • \n • \n • \n • \n • \n •</item>
+        <item>WYMAGANIA ROŚLINKI: \n •\n • \n • \n • \n • \n • \n • \n •</item>
+        <item>WYMAGANIA ROŚLINKI: \n •\n • \n • \n • \n • \n • \n • \n •</item>
+        <item>WYMAGANIA ROŚLINKI: \n •\n • \n • \n • \n • \n • \n • \n •</item>
+        <item>WYMAGANIA ROŚLINKI: \n •\n • \n • \n • \n • \n • \n • \n •</item>
+
+    </string-array>
+</resources>
