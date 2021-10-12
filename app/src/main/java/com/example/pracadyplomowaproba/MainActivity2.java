@@ -277,7 +277,7 @@ public class MainActivity2 extends AppCompatActivity {
        Runnable task1 =() -> {
             try {
                 for(int i=1; i>0;i++) {
-                    Document doc = Jsoup.connect("http://192.168.1.102/Temps/Api.php").get();
+                    Document doc = Jsoup.connect("http://192.168.1.40/Temps/Api.php").get();
                     Elements h2 = doc.select("h2");
                     Elements h3 = doc.select("h3");
                     for (Element element : h2) {
