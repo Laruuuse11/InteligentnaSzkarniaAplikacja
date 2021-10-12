@@ -25,7 +25,8 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toTopOf="parent"
+        android:focusable="true">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -47,7 +48,8 @@
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintVertical_bias="0.0"
                 tools:ignore="ImageContrastCheck"
-                tools:srcCompat="@tools:sample/avatars" />
+                tools:srcCompat="@tools:sample/avatars"
+                android:contentDescription="@string/todo" />
 
             <TextView
                 android:id="@+id/myText2"
@@ -55,7 +57,7 @@
                 android:layout_height="22dp"
                 android:layout_marginTop="5dp"
                 android:layout_marginEnd="10dp"
-                android:text="Description"
+                android:text="@string/description"
                 android:textColor="#3E3939"
                 android:textSize="14sp"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -69,11 +71,11 @@
                 android:layout_height="34dp"
                 android:layout_marginStart="80dp"
                 android:layout_marginTop="7dp"
-                android:layout_marginEnd="10dp"
-                android:text="Title"
+                android:layout_marginEnd="5dp"
+                android:text="@string/title"
                 android:textAllCaps="false"
                 android:textColor="#3E3939"
-                android:textSize="15sp"
+                android:textSize="14sp"
                 android:textStyle="bold"
                 app:layout_constraintBottom_toTopOf="@+id/myText2"
                 app:layout_constraintEnd_toEndOf="parent"
