@@ -54,7 +54,7 @@ public class WilgotnoscGlebyActivity extends AppCompatActivity {
 
         if(hostname == null)
         {
-            hostname = "192.168.1.102";
+            hostname = "192.168.1.40";
             password = "Konie505";
             username = "pi";
         }
@@ -82,7 +82,7 @@ public class WilgotnoscGlebyActivity extends AppCompatActivity {
         @SuppressLint("SetTextI18n") Runnable task1 =() -> {
             try {
                 for(int i=1; i>0;i++) {
-                    Document doc = Jsoup.connect("http://192.168.1.102/Temps/Api.php").get();
+                    Document doc = Jsoup.connect("http://192.168.1.40/Temps/Api.php").get();
                     Elements h4 = doc.select("h4");
                     for (Element element : h4) {
                             wynikPobieraniaWilgotnosciCzerwony = element.text();
