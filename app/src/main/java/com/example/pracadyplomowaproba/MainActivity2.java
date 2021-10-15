@@ -42,8 +42,7 @@ public class MainActivity2 extends AppCompatActivity {
         session.setConfig(prop);
         session.connect();
         ChannelExec channelssh = (ChannelExec) session.openChannel("exec");
-        channelssh.setCommand("gpio -g mode 26 out");
-        channelssh.setCommand("gpio -g write 26 0");
+        channelssh.setCommand("gpio -g mode 26 out\ngpio -g write 26 0");
         channelssh.connect();
         channelssh.disconnect();
     }
@@ -57,8 +56,7 @@ public class MainActivity2 extends AppCompatActivity {
         session.setConfig(prop);
         session.connect();
         ChannelExec channelssh = (ChannelExec) session.openChannel("exec");
-        channelssh.setCommand("gpio -g mode 26 out");
-        channelssh.setCommand("gpio -g write 26 1");
+        channelssh.setCommand("gpio -g mode 26 out\ngpio -g write 26 1");
         channelssh.connect();
         channelssh.disconnect();
     }
@@ -73,8 +71,7 @@ public class MainActivity2 extends AppCompatActivity {
         session.setConfig(prop);
         session.connect();
         ChannelExec channelssh = (ChannelExec) session.openChannel("exec");
-        channelssh.setCommand("gpio -g mode 19 out");
-        channelssh.setCommand("gpio -g write 19 0");
+        channelssh.setCommand("gpio -g mode 19 out\ngpio -g write 19 0");
         channelssh.connect();
         channelssh.disconnect();
     }
@@ -88,8 +85,7 @@ public class MainActivity2 extends AppCompatActivity {
         session.setConfig(prop);
         session.connect();
         ChannelExec channelssh = (ChannelExec) session.openChannel("exec");
-        channelssh.setCommand("gpio -g mode 19 out");
-        channelssh.setCommand("gpio -g write 19 1");
+        channelssh.setCommand("gpio -g mode 19 out\ngpio -g write 19 1");
         channelssh.connect();
         channelssh.disconnect();
     }
@@ -104,8 +100,7 @@ public class MainActivity2 extends AppCompatActivity {
         session.setConfig(prop);
         session.connect();
         ChannelExec channelssh = (ChannelExec) session.openChannel("exec");
-        channelssh.setCommand("gpio -g mode 13 out");
-        channelssh.setCommand("gpio -g write 13 0");
+        channelssh.setCommand("gpio -g mode 13 out\ngpio -g write 13 0");
         channelssh.connect();
         channelssh.disconnect();
     }
@@ -119,8 +114,7 @@ public class MainActivity2 extends AppCompatActivity {
         session.setConfig(prop);
         session.connect();
         ChannelExec channelssh = (ChannelExec) session.openChannel("exec");
-        channelssh.setCommand("gpio -g mode 13 out");
-        channelssh.setCommand("gpio -g write 13 1");
+        channelssh.setCommand("gpio -g mode 13 out\ngpio -g write 13 1");
         channelssh.connect();
         channelssh.disconnect();
     }
