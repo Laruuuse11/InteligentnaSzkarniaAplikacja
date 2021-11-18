@@ -1,6 +1,7 @@
 package com.example.pracadyplomowaproba;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.View;
@@ -17,7 +18,18 @@ import java.util.Properties;
 @SuppressWarnings("ALL")
 public class MainActivity extends AppCompatActivity {
 
-    public void ConnectedSSH (String username, String password, String hostname, int port) throws Exception {
+    public static final String SHARED_PREFS = "sharedPrefs";
+    public static final String LOGIN = "login";
+    public static final String HASLO = "haslo";
+    public static final String ADRES = "adres";
+    private String loadLogin;
+    private String loadHaslo;
+    private String loadAdres;
+    EditText InputLogin;
+    EditText InputHaslo;
+    EditText InputAdresIP;
+
+    public void ConnectedSSH(String username, String password, String hostname, int port) throws Exception {
         JSch jsch = new JSch();
         Session session = jsch.getSession(username, hostname, port);
         session.setPassword(password);
@@ -25,12 +37,8 @@ public class MainActivity extends AppCompatActivity {
         prop.put("StrictHostKeyChecking", "no");
         session.setConfig(prop);
         session.connect();
-        if(session.isConnected()) {
+        if (session.isConnected()) {
             Intent intent = new Intent(MainActivity.this, MainActivity2.class);
-            intent.putExtra("WysyłkaIP1",hostname);
-            intent.putExtra("WysyłkaLogin1",username);
-            intent.putExtra("WysylkaPass1",password);
-            session.disconnect();
             startActivity(intent);
         }
     }
@@ -40,17 +48,9 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        EditText InputLogin = (EditText) findViewById(R.id.InputLogin);
-        EditText InputHaslo = (EditText) findViewById(R.id.inputPassword);
-        EditText InputAdresIP = (EditText) findViewById(R.id.InputIP);
-
-        String hostnamePobrane = getIntent().getStringExtra("WysyłkaIP2");
-        String passwordPobrane = getIntent().getStringExtra("WysylkaPass2");
-        String usernamePobrane = getIntent().getStringExtra("WysyłkaLogin2");
-
-        InputLogin.setText(usernamePobrane);
-        InputHaslo.setText(passwordPobrane);
-        InputAdresIP.setText(hostnamePobrane);
+        InputLogin = (EditText) findViewById(R.id.InputLogin);
+        InputHaslo = (EditText) findViewById(R.id.inputPassword);
+        InputAdresIP = (EditText) findViewById(R.id.InputIP);
 
         Button ConnectedButton = (Button) findViewById(R.id.ConnectedBtn);
         ConnectedButton.setOnClickListener(new View.OnClickListener() {
@@ -63,11 +63,39 @@ public class MainActivity extends AppCompatActivity {
                         } catch (Exception e) {
                             e.printStackTrace();
                         }
+                        saveData();
+
                         return null;
                     }
                 }.execute(1);
             }
         });
+
+        loadData();
+        updateViews();
+    }
+
+    private void saveData() {
+        SharedPreferences sharedPreferences = getSharedPreferences(SHARED_PREFS, MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putString(LOGIN, InputLogin.getText().toString());
+        editor.putString(HASLO, InputHaslo.getText().toString());
+        editor.putString(ADRES, InputAdresIP.getText().toString());
+        editor.apply();
+    }
+
+
+    public void loadData() {
+        SharedPreferences sharedPreferences = getSharedPreferences(SHARED_PREFS, MODE_PRIVATE);
+        loadLogin = sharedPreferences.getString(LOGIN, "");
+        loadHaslo = sharedPreferences.getString(HASLO, "");
+        loadAdres = sharedPreferences.getString(ADRES, "");
+    }
+    public void updateViews()
+    {
+        InputLogin.setText(loadLogin);
+        InputHaslo.setText(loadHaslo);
+        InputAdresIP.setText(loadAdres);
     }
 }
 

@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.View;
@@ -31,6 +32,10 @@ public class MainActivity2 extends AppCompatActivity {
     TextView PobranaTemperatura;
     String   wynikPobieraniaWilg;
     TextView PobranaWilgotnosc;
+
+    private String loadLogin;
+    private String loadHaslo;
+    private String loadAdres;
 
     public void GpioSwiatloOff(String username, String password, String hostname, int port) throws Exception {
 
@@ -125,6 +130,11 @@ public class MainActivity2 extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main2);
 
+        SharedPreferences sharedPreferences = getSharedPreferences(MainActivity.SHARED_PREFS, MODE_PRIVATE);
+        loadLogin = sharedPreferences.getString(MainActivity.LOGIN, "");
+        loadHaslo = sharedPreferences.getString(MainActivity.HASLO, "");
+        loadAdres = sharedPreferences.getString(MainActivity.ADRES, "");
+
         getWebsite();
         PobranaWilgotnosc = findViewById(R.id.WilgotnoscImport);
         PobranaTemperatura = findViewById(R.id.TemperaturaImport);
@@ -135,17 +145,6 @@ public class MainActivity2 extends AppCompatActivity {
         Calendar cal = Calendar.getInstance();
         date.setText(dateFormat.format(cal.getTime()));
 
-        String hostname = getIntent().getStringExtra("WysyłkaIP1");
-        String password = getIntent().getStringExtra("WysylkaPass1");
-        String username = getIntent().getStringExtra("WysyłkaLogin1");
-
-        if(hostname == null)
-        {
-            hostname = getIntent().getStringExtra("WysyłkaIP2");
-            password = getIntent().getStringExtra("WysylkaPass2");
-            username = getIntent().getStringExtra("WysyłkaLogin2");
-        }
-
         Button PrzejscieDoWilgotnosciGleby = findViewById(R.id.WilgotnoscGlebyBtn);
         Button ButtonSwiatloOn = findViewById(R.id.SwiatloOnBtn);
         Button ButtonSwiatloOff = findViewById(R.id.SwiatloOffBtn);
@@ -155,13 +154,10 @@ public class MainActivity2 extends AppCompatActivity {
         Button ButtonGniazdaOn = findViewById(R.id.GniazdoOnBtn);
         Button ButtonGniazdaOff = findViewById(R.id.GniazdoOffBtn);
 
-        String finalUsername2 = username;
-        String finalPassword2 = password;
-        String finalHostname2 = hostname;
         ButtonGniazdaOff.setOnClickListener(v -> new AsyncTask<Integer, Void, Void>() {
             protected Void doInBackground(Integer... params) {
                 try {
-                       GpioGniazdaOff(finalUsername2, finalPassword2, finalHostname2, 22);
+                       GpioGniazdaOff(loadLogin, loadHaslo, loadAdres, 22);
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
@@ -169,13 +165,10 @@ public class MainActivity2 extends AppCompatActivity {
             }
         }.execute(1));
 
-        String finalUsername1 = username;
-        String finalPassword1 = password;
-        String finalHostname1 = hostname;
         ButtonGniazdaOn.setOnClickListener(v -> new AsyncTask<Integer, Void, Void>() {
             protected Void doInBackground(Integer... params) {
                 try {
-                    GpioGniazdaOn(finalUsername1, finalPassword1, finalHostname1, 22);
+                    GpioGniazdaOn(loadLogin, loadHaslo, loadAdres, 22);
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
@@ -183,13 +176,10 @@ public class MainActivity2 extends AppCompatActivity {
             }
         }.execute(1));
 
-        String finalUsername = username;
-        String finalPassword = password;
-        String finalHostname = hostname;
         ButtonWentylatorOff.setOnClickListener(v -> new AsyncTask<Integer, Void, Void>() {
             protected Void doInBackground(Integer... params) {
                 try {
-                    GpioWentylatorOff(finalUsername, finalPassword, finalHostname, 22);
+                    GpioWentylatorOff(loadLogin, loadHaslo, loadAdres, 22);
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
@@ -197,13 +187,10 @@ public class MainActivity2 extends AppCompatActivity {
             }
         }.execute(1));
 
-        String finalUsername3 = username;
-        String finalPassword3 = password;
-        String finalHostname3 = hostname;
         ButtonWentylatorOn.setOnClickListener(v -> new AsyncTask<Integer, Void, Void>() {
             protected Void doInBackground(Integer... params) {
                 try {
-                    GpioWentylatorOn(finalUsername3, finalPassword3, finalHostname3, 22);
+                    GpioWentylatorOn(loadLogin, loadHaslo, loadAdres, 22);
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
@@ -211,13 +198,10 @@ public class MainActivity2 extends AppCompatActivity {
             }
         }.execute(1));
 
-        String finalUsername4 = username;
-        String finalPassword4 = password;
-        String finalHostname4 = hostname;
         ButtonSwiatloOn.setOnClickListener(v -> new AsyncTask<Integer, Void, Void>() {
             protected Void doInBackground(Integer... params) {
                 try {
-                    GpioSwiatloOn(finalUsername4, finalPassword4, finalHostname4, 22);
+                    GpioSwiatloOn(loadLogin, loadHaslo, loadAdres, 22);
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
@@ -225,13 +209,10 @@ public class MainActivity2 extends AppCompatActivity {
             }
         }.execute(1));
 
-        String finalUsername5 = username;
-        String finalPassword5 = password;
-        String finalHostname5 = hostname;
         ButtonSwiatloOff.setOnClickListener(v -> new AsyncTask<Integer, Void, Void>() {
             protected Void doInBackground(Integer... params) {
                 try {
-                    GpioSwiatloOff(finalUsername5, finalPassword5, finalHostname5, 22);
+                    GpioSwiatloOff(loadLogin, loadHaslo, loadAdres, 22);
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
@@ -240,27 +221,15 @@ public class MainActivity2 extends AppCompatActivity {
         }.execute(1));
 
 
-        String finalHostname6 = hostname;
-        String finalUsername6 = username;
-        String finalPassword6 = password;
         ButtonWyjscie.setOnClickListener(v -> {
             Intent intent = new Intent(MainActivity2.this,MainActivity.class);
-            intent.putExtra("WysyłkaIP2", finalHostname6);
-            intent.putExtra("WysyłkaLogin2", finalUsername6);
-            intent.putExtra("WysylkaPass2", finalPassword6);
             startActivity(intent);
         });
 
-        String finalHostname7 = hostname;
-        String finalUsername7 = username;
-        String finalPassword7 = password;
         PrzejscieDoWilgotnosciGleby.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(MainActivity2.this, WilgotnoscGlebyActivity.class);
-                intent.putExtra("WysyłkaIP2", finalHostname7);
-                intent.putExtra("WysyłkaLogin2", finalUsername7);
-                intent.putExtra("WysylkaPass2", finalPassword7);
                 startActivity(intent);
             }
         });
@@ -268,10 +237,10 @@ public class MainActivity2 extends AppCompatActivity {
 
     @SuppressLint("SetTextI18n")
     public void getWebsite() {
-       Runnable task1 =() -> {
+        Runnable task1 =() -> {
             try {
                 for(int i=1; i>0;i++) {
-                    Document doc = Jsoup.connect("http://83.25.58.98/Temps/Api.php").get();
+                    Document doc = Jsoup.connect("http://"+ loadAdres +"/Temps/Api.php").get();
                     Elements h2 = doc.select("h2");
                     Elements h3 = doc.select("h3");
                     for (Element element : h2) {
