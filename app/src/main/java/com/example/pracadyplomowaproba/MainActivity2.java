@@ -10,9 +10,11 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.jcraft.jsch.ChannelExec;
 import com.jcraft.jsch.JSch;
+import com.jcraft.jsch.JSchException;
 import com.jcraft.jsch.Session;
 
 import org.jsoup.Jsoup;
@@ -20,7 +22,9 @@ import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
+import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStreamReader;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -32,6 +36,8 @@ public class MainActivity2 extends AppCompatActivity {
     TextView PobranaTemperatura;
     String   wynikPobieraniaWilg;
     TextView PobranaWilgotnosc;
+
+    private String test;
 
     private String loadLogin;
     private String loadHaslo;
@@ -47,8 +53,17 @@ public class MainActivity2 extends AppCompatActivity {
         session.setConfig(prop);
         session.connect();
         ChannelExec channelssh = (ChannelExec) session.openChannel("exec");
-        channelssh.setCommand("gpio -g mode 26 out\ngpio -g write 26 0");
+        channelssh.setCommand("gpio -g mode 26 out\ngpio -g write 26 0\n gpio -g read 26\n");
         channelssh.connect();
+        BufferedReader input = new BufferedReader(new InputStreamReader(channelssh.getInputStream()));
+        String swiatlo = null;
+        try {
+            while ((swiatlo = input.readLine()) != null) {
+                System.out.println("Swiatło: " + swiatlo);
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         channelssh.disconnect();
     }
     public void GpioSwiatloOn(String username, String password, String hostname, int port) throws Exception {
@@ -61,8 +76,17 @@ public class MainActivity2 extends AppCompatActivity {
         session.setConfig(prop);
         session.connect();
         ChannelExec channelssh = (ChannelExec) session.openChannel("exec");
-        channelssh.setCommand("gpio -g mode 26 out\ngpio -g write 26 1");
+        channelssh.setCommand("gpio -g mode 26 out\ngpio -g write 26 1\n gpio -g read 26\n");
         channelssh.connect();
+        BufferedReader input = new BufferedReader(new InputStreamReader(channelssh.getInputStream()));
+        String swiatlo = null;
+        try {
+            while ((swiatlo = input.readLine()) != null) {
+                System.out.println("swiatło" + swiatlo);
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         channelssh.disconnect();
     }
 
@@ -76,9 +100,20 @@ public class MainActivity2 extends AppCompatActivity {
         session.setConfig(prop);
         session.connect();
         ChannelExec channelssh = (ChannelExec) session.openChannel("exec");
-        channelssh.setCommand("gpio -g mode 19 out\ngpio -g write 19 0");
+        channelssh.setCommand("gpio -g mode 19 out\ngpio -g write 19 0\n gpio -g read 19\n");
         channelssh.connect();
+        BufferedReader input = new BufferedReader(new InputStreamReader(channelssh.getInputStream()));
+        String wentyl = null;
+        try {
+            while ((wentyl = input.readLine()) != null) {
+                System.out.println("wentyl: "+wentyl);
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         channelssh.disconnect();
+
+
     }
     public void GpioWentylatorOn(String username, String password, String hostname, int port) throws Exception {
 
@@ -90,10 +125,25 @@ public class MainActivity2 extends AppCompatActivity {
         session.setConfig(prop);
         session.connect();
         ChannelExec channelssh = (ChannelExec) session.openChannel("exec");
-        channelssh.setCommand("gpio -g mode 19 out\ngpio -g write 19 1");
+        channelssh.setCommand("gpio -g mode 19 out\ngpio -g write 19 1 \n gpio -g read 19\n ");
         channelssh.connect();
+        BufferedReader input = new BufferedReader(new InputStreamReader(channelssh.getInputStream()));
+        String wentyl = null;
+        try {
+            while ((wentyl = input.readLine()) != null) {
+                System.out.println("wentyl: "+wentyl);
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
         channelssh.disconnect();
     }
+
+
+
+
+
 
     public void GpioGniazdaOff(String username, String password, String hostname, int port) throws Exception {
 
@@ -105,8 +155,17 @@ public class MainActivity2 extends AppCompatActivity {
         session.setConfig(prop);
         session.connect();
         ChannelExec channelssh = (ChannelExec) session.openChannel("exec");
-        channelssh.setCommand("gpio -g mode 13 out\ngpio -g write 13 0");
+        channelssh.setCommand("gpio -g mode 13 out\ngpio -g write 13 0\n gpio -g read 13\n");
         channelssh.connect();
+        BufferedReader input = new BufferedReader(new InputStreamReader(channelssh.getInputStream()));
+        String gniazdo = null;
+        try {
+            while ((gniazdo = input.readLine()) != null) {
+                System.out.println("gniazdo: "+ gniazdo);
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         channelssh.disconnect();
     }
     public void GpioGniazdaOn(String username, String password, String hostname, int port) throws Exception {
@@ -119,8 +178,17 @@ public class MainActivity2 extends AppCompatActivity {
         session.setConfig(prop);
         session.connect();
         ChannelExec channelssh = (ChannelExec) session.openChannel("exec");
-        channelssh.setCommand("gpio -g mode 13 out\ngpio -g write 13 1");
+        channelssh.setCommand("gpio -g mode 13 out\ngpio -g write 13 1\n gpio -g read 13 \n");
         channelssh.connect();
+        BufferedReader input = new BufferedReader(new InputStreamReader(channelssh.getInputStream()));
+        String gniazdo = null;
+        try {
+            while ((gniazdo = input.readLine()) != null) {
+                System.out.println("gniazdo:" +gniazdo);
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         channelssh.disconnect();
     }
 
@@ -135,7 +203,9 @@ public class MainActivity2 extends AppCompatActivity {
         loadHaslo = sharedPreferences.getString(MainActivity.HASLO, "");
         loadAdres = sharedPreferences.getString(MainActivity.ADRES, "");
 
+        CheckGPIO();
         getWebsite();
+
         PobranaWilgotnosc = findViewById(R.id.WilgotnoscImport);
         PobranaTemperatura = findViewById(R.id.TemperaturaImport);
         TextView date = findViewById(R.id.DateTextView);
@@ -260,5 +330,69 @@ public class MainActivity2 extends AppCompatActivity {
             }
         };
        new Thread(task1).start();
+    }
+
+    @SuppressLint("SetTextI18n")
+    public void CheckGPIO() {
+        Runnable task2 =() -> {
+            try {
+                for(int i=1; i>0;i++) {
+                    JSch jsch = new JSch();
+                    Session session = jsch.getSession(loadLogin,loadAdres, 22);
+                    session.setPassword(loadHaslo);
+                    Properties prop = new Properties();
+                    prop.put("StrictHostKeyChecking", "no");
+                    session.setConfig(prop);
+                    session.connect();
+
+                    ChannelExec channelssh = (ChannelExec) session.openChannel("exec");
+                    channelssh.setCommand("gpio -g read 13 \n");
+                    channelssh.connect();
+                    BufferedReader input = new BufferedReader(new InputStreamReader(channelssh.getInputStream()));
+                    String pobraneGniazdo = null;
+                    try {
+                        while ((pobraneGniazdo = input.readLine()) != null) {
+                            System.out.println("PobraneGniazdo: "+pobraneGniazdo);
+                        }
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                    channelssh.disconnect();
+
+                    ChannelExec channelssh1 = (ChannelExec) session.openChannel("exec");
+                    channelssh1.setCommand("gpio -g read 19 \n");
+                    channelssh1.connect();
+                    BufferedReader input1 = new BufferedReader(new InputStreamReader(channelssh1.getInputStream()));
+                    String pobraneWentyl = null;
+                    try {
+                        while ((pobraneWentyl = input1.readLine()) != null) {
+                            System.out.println("pobraneWentyl: "+pobraneWentyl);
+                        }
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                    channelssh.disconnect();
+
+                    ChannelExec channelssh2 = (ChannelExec) session.openChannel("exec");
+                    channelssh2.setCommand("gpio -g read 26 \n");
+                    channelssh2.connect();
+                    BufferedReader input2 = new BufferedReader(new InputStreamReader(channelssh2.getInputStream()));
+                    String pobraneSwiatlo = null;
+                    try {
+                        while ((pobraneSwiatlo = input2.readLine()) != null) {
+                            System.out.println("pobraneSwiatlo: "+pobraneSwiatlo);
+                        }
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                    channelssh.disconnect();
+
+                    Thread.sleep(1000);
+                }
+            } catch (IOException | InterruptedException | JSchException e) {
+
+            }
+        };
+        new Thread(task2).start();
     }
 }
