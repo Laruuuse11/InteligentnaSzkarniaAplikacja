@@ -46,10 +46,9 @@ public class MainActivity2 extends AppCompatActivity {
     private String loadLogin;
     private String loadHaslo;
     private String loadAdres;
-
-    private Boolean loadSwiatlo;
-    private Boolean loadWentyl;
-    private Boolean loadGniazdo;
+    private String loadSwiatlo;
+    private String loadWentyl;
+    private String loadGniazdo;
 
     public void GpioSwiatloOff(String username, String password, String hostname, int port) throws Exception {
 
@@ -146,17 +145,26 @@ public class MainActivity2 extends AppCompatActivity {
         loadLogin = sharedPreferences.getString(MainActivity.LOGIN, "");
         loadHaslo = sharedPreferences.getString(MainActivity.HASLO, "");
         loadAdres = sharedPreferences.getString(MainActivity.ADRES, "");
-        loadGniazdo = sharedPreferences.getBoolean(String.valueOf(MainActivity.GNIAZDO),false);
-        loadWentyl = sharedPreferences.getBoolean(String.valueOf(MainActivity.WENTYL),false);
-        loadSwiatlo = sharedPreferences.getBoolean(String.valueOf(MainActivity.SWIATLO),false);
+        loadGniazdo = sharedPreferences.getString(MainActivity.GNIAZDO,"");
+        loadWentyl = sharedPreferences.getString(MainActivity.WENTYL,"");
+        loadSwiatlo = sharedPreferences.getString(MainActivity.SWIATLO,"");
 
         swiatloSW = findViewById(R.id.switchSwiatlo);
         gniazdoSW = findViewById(R.id.switchGniazdo);
         wentylSW = findViewById(R.id.switchWentyl);
 
-        swiatloSW.setChecked(loadSwiatlo);
-        wentylSW.setChecked(loadWentyl);
-        gniazdoSW.setChecked(loadGniazdo);
+        if(loadSwiatlo == "true")
+        {
+            swiatloSW.setChecked(true);
+        }
+        if(loadWentyl == "true")
+        {
+            wentylSW.setChecked(true);
+        }
+        if(loadGniazdo=="true")
+        {
+            gniazdoSW.setChecked(true);
+        }
 
         getWebsite();
 
