@@ -19,30 +19,6 @@
         app:layout_constraintVertical_bias="1.0">
 
         <Button
-            android:id="@+id/SwiatloOffBtn"
-            android:layout_width="80dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="300dp"
-            android:layout_marginTop="25dp"
-            android:layout_marginEnd="50dp"
-            android:text="@string/off"
-            android:textColor="#fff"
-            app:backgroundTint="#3E3939"
-            tools:ignore="DuplicateSpeakableTextCheck" />
-
-        <Button
-            android:id="@+id/SwiatloOnBtn"
-            android:layout_width="80dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="200dp"
-            android:layout_marginTop="25dp"
-            android:layout_marginEnd="150dp"
-            android:text="@string/on"
-            android:textColor="#fff"
-            app:backgroundTint="#3E3939"
-            tools:ignore="DuplicateSpeakableTextCheck" />
-
-        <Button
             android:id="@+id/Wyjscie"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -77,29 +53,6 @@
             android:textColor="#3E3939"
             android:textSize="20sp" />
 
-        <Button
-            android:id="@+id/WentylatoryOnBtn"
-            android:layout_width="80dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="200dp"
-            android:layout_marginTop="100dp"
-            android:layout_marginEnd="150dp"
-            android:gravity="center"
-            android:text="@string/on"
-            app:backgroundTint="#3E3939"
-            android:textColor="#fff" />
-
-        <Button
-            android:id="@+id/WentylatoryOffBtn"
-            android:layout_width="80dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="300dp"
-            android:layout_marginTop="100dp"
-            android:gravity="center"
-            android:text="@string/off"
-            app:backgroundTint="#3E3939"
-            android:textColor="#fff" />
-
         <TextView
             android:id="@+id/GniazdaText"
             android:layout_width="122dp"
@@ -111,28 +64,6 @@
             android:textSize="20sp"
             android:minHeight="48dip"
             android:textColor="#3E3939" />
-
-        <Button
-            android:id="@+id/GniazdoOnBtn"
-            android:layout_width="80dp"
-            android:layout_height="wrap_content"
-            android:text="@string/on"
-            android:gravity="center"
-            app:backgroundTint="#3E3939"
-            android:layout_marginTop="175dp"
-            android:layout_marginStart="200dp"
-            android:textColor="#fff" />
-
-        <Button
-            android:id="@+id/GniazdoOffBtn"
-            android:layout_width="80dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="300dp"
-            android:layout_marginTop="175dp"
-            android:gravity="center"
-            android:text="@string/off"
-            app:backgroundTint="#3E3939"
-            android:textColor="#fff" />
 
         <TextView
             android:id="@+id/TemperaturaText"
@@ -223,5 +154,32 @@
             android:textColor="#3E3939"
             android:textSize="20sp"
             tools:ignore="SpeakableTextPresentCheck" />
+
+        <Switch
+            android:id="@+id/switchSwiatlo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="275dp"
+            android:layout_marginTop="34dp"
+            android:scaleX="2"
+            android:scaleY="2" />
+
+        <Switch
+            android:id="@+id/switchWentyl"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="275dp"
+            android:layout_marginTop="110dp"
+            android:scaleX="2"
+            android:scaleY="2" />
+
+        <Switch
+            android:id="@+id/switchGniazdo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="275dp"
+            android:layout_marginTop="185dp"
+            android:scaleX="2"
+            android:scaleY="2" />
     </FrameLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
