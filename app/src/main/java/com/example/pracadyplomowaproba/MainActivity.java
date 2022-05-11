@@ -34,25 +34,16 @@ public class MainActivity extends AppCompatActivity {
     public static final String LOGIN = "login";
     public static final String HASLO = "haslo";
     public static final String ADRES = "adres";
-    public static String SWIATLO;
-    public static String WENTYL;
-    public static String GNIAZDO;
 
     //pobranie
     private String loadLogin;
     private String loadHaslo;
     private String loadAdres;
-    private String loadSwiatlo;
-    private String loadWentyl;
-    private String loadGniazdo;
 
     //zapis
     EditText InputLogin;
     EditText InputHaslo;
     EditText InputAdresIP;
-    String inputSwiatlo;
-    String inputWentyl;
-    String inputGniazdo;
 
     public void ConnectedSSH(String username, String password, String hostname, int port) throws Exception {
         JSch jsch = new JSch();
@@ -94,8 +85,6 @@ public class MainActivity extends AppCompatActivity {
                 }.execute(1);
             }
         });
-
-        getWebsite();
         loadData();
         updateViews();
     }
@@ -106,9 +95,6 @@ public class MainActivity extends AppCompatActivity {
         editor.putString(LOGIN, InputLogin.getText().toString());
         editor.putString(HASLO, InputHaslo.getText().toString());
         editor.putString(ADRES, InputAdresIP.getText().toString());
-        editor.putString(GNIAZDO, inputGniazdo);
-        editor.putString(WENTYL, inputWentyl);
-        editor.putString(SWIATLO, inputSwiatlo);
         editor.apply();
     }
     public void loadData() {
@@ -116,78 +102,11 @@ public class MainActivity extends AppCompatActivity {
         loadLogin = sharedPreferences.getString(LOGIN, "");
         loadHaslo = sharedPreferences.getString(HASLO, "");
         loadAdres = sharedPreferences.getString(ADRES, "");
-        loadSwiatlo = sharedPreferences.getString(SWIATLO, "");
-        loadGniazdo = sharedPreferences.getString(GNIAZDO,"");
-        loadWentyl = sharedPreferences.getString(WENTYL,"");
-
     }
     public void updateViews() {
         InputLogin.setText(loadLogin);
         InputHaslo.setText(loadHaslo);
         InputAdresIP.setText(loadAdres);
     }
-    public void getWebsite() {
-        Runnable task1 =() -> {
-            try {
-                JSch jsch = new JSch();
-                Session session = jsch.getSession(loadLogin, loadAdres, 22);
-                session.setPassword(loadHaslo);
-                Properties prop = new Properties();
-                prop.put("StrictHostKeyChecking", "no");
-                session.setConfig(prop);
-                session.connect();
-
-                ChannelExec channelssh = (ChannelExec) session.openChannel("exec");
-                channelssh.setCommand("gpio -g read 13\n");
-                channelssh.connect();
-                BufferedReader input = new BufferedReader(new InputStreamReader(channelssh.getInputStream()));
-                String gniazdo = input.readLine();
-                if(gniazdo == "1")
-                {
-                    inputGniazdo = "true";
-                }
-                else if (gniazdo == "0") {
-                    inputGniazdo = "false";
-                }
-                channelssh.disconnect();
-
-                ChannelExec channelssh1 = (ChannelExec) session.openChannel("exec");
-                channelssh1.setCommand("gpio -g read 19\n");
-                channelssh1.connect();
-                BufferedReader input1 = new BufferedReader(new InputStreamReader(channelssh1.getInputStream()));
-                String wentyl = input1.readLine();
-                if(wentyl == "1")
-                {
-                    inputWentyl = "true";
-                }
-                else if (wentyl == "0") {
-                    inputWentyl = "false";
-                }
-                channelssh1.disconnect();
-
-                ChannelExec channelssh2 = (ChannelExec) session.openChannel("exec");
-                channelssh2.setCommand("gpio -g read 26\n");
-                channelssh2.connect();
-                BufferedReader input2 = new BufferedReader(new InputStreamReader(channelssh2.getInputStream()));
-                String swiatlo = input2.readLine();
-                if(swiatlo == "1")
-                {
-                    inputSwiatlo = "true";
-                }
-                else if (swiatlo == "0") {
-                    inputSwiatlo = "false";
-                }
-                channelssh2.disconnect();
-                System.out.println(swiatlo);
-                System.out.println(wentyl);
-                System.out.println(gniazdo);
-
-            } catch (JSchException | IOException e) {
-                e.printStackTrace();
-            }
-        };
-        new Thread(task1).start();
-    }
-
 }
 

@@ -15,18 +15,12 @@ import android.widget.TextView;
 
 import com.jcraft.jsch.ChannelExec;
 import com.jcraft.jsch.JSch;
-
-import com.jcraft.jsch.JSchException;
 import com.jcraft.jsch.Session;
-
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
-
-import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.InputStreamReader;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -39,16 +33,16 @@ public class MainActivity2 extends AppCompatActivity {
     TextView PobranaTemperatura;
     String   wynikPobieraniaWilg;
     TextView PobranaWilgotnosc;
-    Switch swiatloSW;
-    Switch wentylSW;
-    Switch gniazdoSW;
+    String   stanSwiatla;
+    String   stanWentyl;
+    String   stanGniazdo;
+    Switch   swiatloSW;
+    Switch   wentylSW;
+    Switch   gniazdoSW;
 
     private String loadLogin;
     private String loadHaslo;
     private String loadAdres;
-    private String loadSwiatlo;
-    private String loadWentyl;
-    private String loadGniazdo;
 
     public void GpioSwiatloOff(String username, String password, String hostname, int port) throws Exception {
 
@@ -145,26 +139,9 @@ public class MainActivity2 extends AppCompatActivity {
         loadLogin = sharedPreferences.getString(MainActivity.LOGIN, "");
         loadHaslo = sharedPreferences.getString(MainActivity.HASLO, "");
         loadAdres = sharedPreferences.getString(MainActivity.ADRES, "");
-        loadGniazdo = sharedPreferences.getString(MainActivity.GNIAZDO,"");
-        loadWentyl = sharedPreferences.getString(MainActivity.WENTYL,"");
-        loadSwiatlo = sharedPreferences.getString(MainActivity.SWIATLO,"");
-
         swiatloSW = findViewById(R.id.switchSwiatlo);
         gniazdoSW = findViewById(R.id.switchGniazdo);
         wentylSW = findViewById(R.id.switchWentyl);
-
-        if(loadSwiatlo == "true")
-        {
-            swiatloSW.setChecked(true);
-        }
-        if(loadWentyl == "true")
-        {
-            wentylSW.setChecked(true);
-        }
-        if(loadGniazdo=="true")
-        {
-            gniazdoSW.setChecked(true);
-        }
 
         getWebsite();
 
@@ -255,14 +232,51 @@ public class MainActivity2 extends AppCompatActivity {
                     Document doc = Jsoup.connect("http://"+ loadAdres +"/Temps/Api.php").get();
                     Elements h1 = doc.select("h1");
                     Elements h2 = doc.select("h2");
+                    Elements h4 = doc.select("h4");
+                    Elements h5 = doc.select("h5");
+                    Elements h6 = doc.select("h6");
                     for (Element element : h1) {
                         wynikPobieraniaTemp = element.text();
                     }
                     for (Element element : h2) {
                         wynikPobieraniaWilg = element.text();
                     }
+                    for (Element element : h4) {
+                        stanSwiatla = element.text();
+                    }
+                    for (Element element : h5) {
+                        stanWentyl = element.text();
+                    }
+                    for (Element element : h6) {
+                        stanGniazdo = element.text();
+                    }
                     runOnUiThread(() -> PobranaTemperatura.setText(wynikPobieraniaTemp + " °C"));
                     runOnUiThread(()-> PobranaWilgotnosc.setText(wynikPobieraniaWilg + " %"));
+
+                    if(stanWentyl.equals("1"))
+                    {
+                        runOnUiThread(()-> wentylSW.setChecked(true));
+                    }
+                    else if(stanWentyl.equals("0"))
+                    {
+                        runOnUiThread(()-> wentylSW.setChecked(false));
+                    }
+                    if(stanSwiatla.equals("1"))
+                    {
+                        runOnUiThread(()-> swiatloSW.setChecked(true));
+                    }
+                    else if(stanSwiatla.equals("0"))
+                    {
+                        runOnUiThread(()-> swiatloSW.setChecked(false));
+                    }
+                    if(stanGniazdo.equals("1"))
+                    {
+                        runOnUiThread(()-> gniazdoSW.setChecked(true));
+                    }
+                    else if(stanGniazdo.equals("0"))
+                    {
+                        runOnUiThread(()-> gniazdoSW.setChecked(false));
+                    }
 
                     Thread.sleep(1000);
                 }
