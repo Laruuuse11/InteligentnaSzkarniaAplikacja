@@ -72,8 +72,8 @@ public class WilgotnoscGlebyActivity extends AppCompatActivity {
             try {
                 for(int i=1; i>0;i++) {
                     Document doc = Jsoup.connect("http://"+loadAdres+"/Temps/Api.php").get();
-                    Elements h4 = doc.select("h4");
-                    for (Element element : h4) {
+                    Elements h3 = doc.select("h3");
+                    for (Element element : h3) {
                             wynikPobieraniaWilgotnosciCzerwony = element.text();
                     }
                     runOnUiThread(()-> czujnikCzerwony.setText(wynikPobieraniaWilgotnosciCzerwony + " %"));

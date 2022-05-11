@@ -253,12 +253,12 @@ public class MainActivity2 extends AppCompatActivity {
                 for(int i=1; i>0;i++) {
 
                     Document doc = Jsoup.connect("http://"+ loadAdres +"/Temps/Api.php").get();
+                    Elements h1 = doc.select("h1");
                     Elements h2 = doc.select("h2");
-                    Elements h3 = doc.select("h3");
-                    for (Element element : h2) {
+                    for (Element element : h1) {
                         wynikPobieraniaTemp = element.text();
                     }
-                    for (Element element : h3) {
+                    for (Element element : h2) {
                         wynikPobieraniaWilg = element.text();
                     }
                     runOnUiThread(() -> PobranaTemperatura.setText(wynikPobieraniaTemp + " °C"));
