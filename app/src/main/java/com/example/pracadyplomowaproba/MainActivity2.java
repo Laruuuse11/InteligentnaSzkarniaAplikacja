@@ -227,56 +227,58 @@ public class MainActivity2 extends AppCompatActivity {
     public void getWebsite() {
         Runnable task1 =() -> {
             try {
-                for(int i=1; i>0;i++) {
+                Document doc = Jsoup.connect("http://"+ loadAdres +"/Temps/Api.php").get();
+                Elements h4 = doc.select("h4");
+                Elements h5 = doc.select("h5");
+                Elements h6 = doc.select("h6");
 
-                    Document doc = Jsoup.connect("http://"+ loadAdres +"/Temps/Api.php").get();
-                    Elements h1 = doc.select("h1");
-                    Elements h2 = doc.select("h2");
-                    Elements h4 = doc.select("h4");
-                    Elements h5 = doc.select("h5");
-                    Elements h6 = doc.select("h6");
+                for (Element element : h4) {
+                    stanSwiatla = element.text();
+                }
+                for (Element element : h5) {
+                    stanWentyl = element.text();
+                }
+                for (Element element : h6) {
+                    stanGniazdo = element.text();
+                }
+                if(stanWentyl.equals("1"))
+                {
+                    runOnUiThread(()-> wentylSW.setChecked(true));
+                }
+                else if(stanWentyl.equals("0"))
+                {
+                    runOnUiThread(()-> wentylSW.setChecked(false));
+                }
+                if(stanSwiatla.equals("1"))
+                {
+                    runOnUiThread(()-> swiatloSW.setChecked(true));
+                }
+                else if(stanSwiatla.equals("0"))
+                {
+                    runOnUiThread(()-> swiatloSW.setChecked(false));
+                }
+                if(stanGniazdo.equals("1"))
+                {
+                    runOnUiThread(()-> gniazdoSW.setChecked(true));
+                }
+                else if(stanGniazdo.equals("0"))
+                {
+                    runOnUiThread(()-> gniazdoSW.setChecked(false));
+                }
+
+                for(int i=1; i>0;i++) {
+                    Document doc2 = Jsoup.connect("http://"+ loadAdres +"/Temps/Api.php").get();
+                    Elements h1 = doc2.select("h1");
+                    Elements h2 = doc2.select("h2");
+
                     for (Element element : h1) {
                         wynikPobieraniaTemp = element.text();
                     }
                     for (Element element : h2) {
                         wynikPobieraniaWilg = element.text();
                     }
-                    for (Element element : h4) {
-                        stanSwiatla = element.text();
-                    }
-                    for (Element element : h5) {
-                        stanWentyl = element.text();
-                    }
-                    for (Element element : h6) {
-                        stanGniazdo = element.text();
-                    }
                     runOnUiThread(() -> PobranaTemperatura.setText(wynikPobieraniaTemp + " °C"));
                     runOnUiThread(()-> PobranaWilgotnosc.setText(wynikPobieraniaWilg + " %"));
-
-                    if(stanWentyl.equals("1"))
-                    {
-                        runOnUiThread(()-> wentylSW.setChecked(true));
-                    }
-                    else if(stanWentyl.equals("0"))
-                    {
-                        runOnUiThread(()-> wentylSW.setChecked(false));
-                    }
-                    if(stanSwiatla.equals("1"))
-                    {
-                        runOnUiThread(()-> swiatloSW.setChecked(true));
-                    }
-                    else if(stanSwiatla.equals("0"))
-                    {
-                        runOnUiThread(()-> swiatloSW.setChecked(false));
-                    }
-                    if(stanGniazdo.equals("1"))
-                    {
-                        runOnUiThread(()-> gniazdoSW.setChecked(true));
-                    }
-                    else if(stanGniazdo.equals("0"))
-                    {
-                        runOnUiThread(()-> gniazdoSW.setChecked(false));
-                    }
 
                     Thread.sleep(1000);
                 }
