@@ -9,8 +9,8 @@
     <string name="on">On</string>
     <string name="wyjscie">Wyjście</string>
     <string name="swiatlo">Światło:</string>
-    <string name="gniazda">Gniazda:</string>
-    <string name="wentylatory">Wentylatory:</string>
+    <string name="gniazda">Nawilżacz:</string>
+    <string name="wentylatory">Wentylator:</string>
     <string name="temperatura">Temperatura:</string>
     <string name="wilgotnosc">Wilgotność:</string>
     <string name="wilgotnosc_gleby_roslin">ROŚLINKI</string>
